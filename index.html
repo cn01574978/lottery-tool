@@ -1,29 +1,95 @@
 <!DOCTYPE html>
-     <html lang="zh-CN">
-     <head>
-       <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>免费随机三位数数据分析工具</title>
-       <style>
-         body { font-family: Arial, sans-serif; margin: 40px; text-align: center; }
-         h1 { color: #333; }
-         p { line-height: 1.6; max-width: 800px; margin: auto; }
-         a { color: #007bff; text-decoration: none; }
-         a:hover { text-decoration: underline; }
-       </style>
-     </head>
-     <body>
-       <h1>免费随机三位数数据分析工具</h1>
-       <p>这是一个免费的桌面程序，基于 Python 和机器学习（如 LSTM、XGBoost）分析三位数历史数据，仅供娱乐和数据研究用途。</p>
-       <p>功能包括：
-         <ul style="text-align: left; max-width: 600px; margin: 20px auto;">
-           <li>加载历史数据（.txt 格式）进行统计分析</li>
-           <li>支持多种模型生成数据趋势</li>
-           <li>提供间隔分析和随机测试功能</li>
-         </ul>
-       </p>
-       <p><strong>下载：</strong> <a href="https://github.com/cn01574978/lottery-tool/releases">点击下载 Windows 版</a></p>
-       <p><strong>联系我们：</strong> 2797582394@qq.com </p>
-       <p><small>注：本工具包含百度联盟广告，用于支持开发和维护。</small></p>
-     </body>
-     </html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>免费三维数据分析工具</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 40px;
+      text-align: center;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto 20px;
+    }
+    ul {
+      text-align: left;
+      max-width: 600px;
+      margin: 20px auto;
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+    .download-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1.1em;
+      margin: 20px 0;
+    }
+    .download-btn:hover {
+      background-color: #0056b3;
+    }
+    .ad-container {
+      width: 300px;
+      height: 250px;
+      margin: 20px auto;
+      border: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+    }
+    .contact {
+      font-size: 0.9em;
+      color: #666;
+      margin-top: 20px;
+    }
+    .footer-note {
+      font-size: 0.8em;
+      color: #888;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>免费三维数据分析工具</h1>
+  <p>这是一款免费的桌面应用程序，基于 Python 和先进的机器学习技术（如 LSTM、XGBoost），专注于分析 3 位数随机序列的统计特性，提供娱乐性和学术研究用途的数据洞察。</p>
+  <p>核心功能包括：</p>
+  <ul>
+    <li>加载 3 位数历史数据（.txt 格式），进行频率统计和模式分析</li>
+    <li>利用机器学习模型预测 3 位数随机出现的趋势</li>
+    <li>提供间隔分析和随机化测试，探索数据规律</li>
+  </ul>
+  <p><strong>下载：</strong> <a href="https://github.com/cn01574978/lottery-tool/releases/download/v1.0.0/main_gui.exe" class="download-btn">点击下载 Windows 版</a></p>
+  <p class="contact"><strong>联系我们：</strong> your-email@example.com</p>
+  <!-- 广告位 -->
+  <div class="ad-container" id="adview_ad">
+    <script src="https://adview.cn/adview.js"></script>
+    <script>
+        window.AdView = window.AdView || [];
+        window.AdView.push({
+            ad_type: "banner",
+            ad_id: "您的广告位ID",
+            width: 300,
+            height: 250
+        });
+    </script>
+    <div id="adview_您的广告位ID"></div>
+  </div>
+  <p class="footer-note">注：本工具包含 AdView 广告，用于支持开发和维护，仅限娱乐和学术用途。</p>
+</body>
+</html>
