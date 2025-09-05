@@ -3,80 +3,273 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>免费三维数据分析工具</title>
+  <title>三维数据智能分析平台</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Noto Sans SC', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       margin: 0;
       padding: 40px;
       text-align: center;
-      background-color: #f5f5f5;
-      color: #333;
+      background: linear-gradient(135deg, #1a73e8 0%, #0a3d62 100%);
+      color: #fff;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><path d="M0 0 L50 50 L100 0 L100 100 L50 50 L0 100 Z" fill="white"/></svg>') repeat;
+      z-index: -1;
     }
     h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 3.2em;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: #fff;
+      text-shadow: 0 3px 6px rgba(0,0,0,0.3);
+      letter-spacing: 1px;
+    }
+    h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.2em;
+      font-weight: 600;
+      margin: 40px 0 20px;
+      color: #e8f0fe;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
     p {
-      font-size: 1.1em;
-      line-height: 1.6;
-      max-width: 800px;
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 1.3em;
+      line-height: 1.8;
+      max-width: 900px;
       margin: 0 auto 20px;
+      color: #e8f0fe;
+      letter-spacing: 0.5px;
     }
     ul {
       text-align: left;
-      max-width: 600px;
-      margin: 20px auto;
-      list-style-type: disc;
-      padding-left: 20px;
+      max-width: 700px;
+      margin: 30px auto;
+      list-style-type: none;
+      padding-left: 0;
+    }
+    ul li {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 1.2em;
+      margin: 15px 0;
+      padding-left: 35px;
+      position: relative;
+      color: #e8f0fe;
+    }
+    ul li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: #a1c4fd;
+      font-size: 1.3em;
+    }
+    .model-list {
+      max-width: 900px;
+      margin: 40px auto;
+      text-align: left;
+    }
+    .model-item {
+      margin-bottom: 25px;
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 10px;
+      transition: transform 0.2s;
+    }
+    .model-item:hover {
+      transform: translateY(-3px);
+    }
+    .model-item h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5em;
+      font-weight: 600;
+      color: #a1c4fd;
+      margin-bottom: 8px;
+    }
+    .model-item p {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 1.1em;
+      color: #d1e3ff;
+      margin: 5px 0;
     }
     .download-btn {
       display: inline-block;
-      padding: 12px 24px;
-      background-color: #007bff;
+      padding: 18px 40px;
+      background: linear-gradient(45deg, #1a73e8, #34c759);
       color: white;
       text-decoration: none;
-      border-radius: 5px;
-      font-size: 1.1em;
-      margin: 20px 0;
+      border-radius: 12px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.4em;
+      font-weight: 600;
+      margin: 40px 0;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .download-btn:hover {
-      background-color: #0056b3;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4);
     }
     .ad-container {
       width: 300px;
       height: 250px;
-      margin: 20px auto;
-      border: 1px solid #ddd;
+      margin: 40px auto;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #fff;
+      background-color: rgba(255,255,255,0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .floating-ad {
+      position: fixed;
+      width: 200px;
+      height: 150px;
+      top: 60%;
+      left: 60%;
+      background-color: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      animation: orbit 5s ease-in-out infinite;
+      z-index: 1000;
+      overflow: hidden;
+    }
+    .floating-ad .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: #ff4d4d;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .floating-ad .close-btn:hover {
+      background: #cc0000;
+    }
+    .floating-ad iframe, .floating-ad div {
+      width: 100%;
+      height: 100%;
+    }
+    @keyframes orbit {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(20px, -30px); }
+      50% { transform: translate(0, -50px); }
+      75% { transform: translate(-20px, -30px); }
+      100% { transform: translate(0, 0); }
     }
     .contact {
-      font-size: 0.9em;
-      color: #666;
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 1.1em;
+      color: #d1e3ff;
       margin-top: 20px;
     }
     .footer-note {
-      font-size: 0.8em;
-      color: #888;
-      margin-top: 10px;
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 0.9em;
+      color: #b3c7ff;
+      margin-top: 15px;
     }
   </style>
 </head>
 <body>
-  <h1>免费三维数据分析工具</h1>
-  <p>这是一款免费的桌面应用程序，基于 Python 和先进的机器学习技术（如 LSTM、XGBoost），专注于分析 3 位数随机序列的统计特性，提供娱乐性和学术研究用途的数据洞察。</p>
-  <p>核心功能包括：</p>
+  <h1>三维数据智能分析平台</h1>
+  <p>解锁数据洞察的未来！这是一款尖端的免费桌面应用程序，基于 Python 驱动，融合前沿深度学习（LSTM、Transformer）和高性能机器学习算法（XGBoost、RandomForest），专为 3 位数随机序列的深度建模与洞察挖掘设计，为技术爱好者与数据研究者带来无与伦比的娱乐性和学术价值。</p>
+  <h2>核心功能</h2>
   <ul>
-    <li>加载 3 位数历史数据（.txt 格式），进行频率统计和模式分析</li>
-    <li>利用机器学习模型预测 3 位数随机出现的趋势</li>
-    <li>提供间隔分析和随机化测试，探索数据规律</li>
+    <li>高维随机序列建模：加载 3 位数历史数据（.txt 格式），通过多模态统计分析，揭示频率分布、周期性规律与概率特征。</li>
+    <li>智能趋势预测：利用先进的时序建模技术（如 LSTM、Transformer），结合熵分析与集成学习，生成高精度 3 位数序列趋势预测。</li>
+    <li>动态间隔分析与随机化验证：提供多维度间隔统计与随机化测试，挖掘数据潜在模式，赋能用户探索复杂序列行为。</li>
   </ul>
-  <p><strong>下载：</strong> <a href="https://github.com/cn01574978/lottery-tool/releases/download/v1.0.0/main_gui.exe" class="download-btn">点击下载 Windows 版</a></p>
+  <h2>智能模型一览</h2>
+  <div class="model-list">
+    <div class="model-item">
+      <h3>朴素贝叶斯 (NaiveBayes)</h3>
+      <p>基于贝叶斯概率理论的经典分类模型，高效处理高维数据，适合快速分析 3 位数序列的概率分布。</p>
+      <p><strong>示例</strong>：输入序列 [123, 456, 789]，计算每个数字出现的条件概率，预测下一组高频数字如 [234]。</p>
+    </div>
+    <div class="model-item">
+      <h3>随机森林 (RandomForest)</h3>
+      <p>集成多棵决策树的强大算法，擅长捕捉复杂特征关系，适用于分析 3 位数序列的非线性模式。</p>
+      <p><strong>示例</strong>：对 [123, 456, 789] 提取特征（如数字和、奇偶性），预测下一序列如 [345] 的模式概率。</p>
+    </div>
+    <div class="model-item">
+      <h3>神经网络 (MLP)</h3>
+      <p>多层感知器，擅长建模非线性关系，通过深层神经网络挖掘 3 位数序列的潜在规律。</p>
+      <p><strong>示例</strong>：训练 [123, 456, 789]，预测下一序列可能为 [234]，基于历史数据的隐含模式。</p>
+    </div>
+    <div class="model-item">
+      <h3>循环神经网络 (LSTM)</h3>
+      <p>长短期记忆网络，专为时序数据设计，捕捉 3 位数序列的长期依赖关系，适合趋势预测。</p>
+      <p><strong>示例</strong>：分析 [123, 456, 789] 的时序变化，预测下一组为 [890]，基于历史趋势。</p>
+    </div>
+    <div class="model-item">
+      <h3>熵序列预测 (EntropyLSTM)</h3>
+      <p>结合熵分析的 LSTM 模型，优化对高不确定性序列的预测，适合复杂 3 位数序列分析。</p>
+      <p><strong>示例</strong>：计算 [123, 456, 789] 的信息熵，预测高熵序列如 [567]。</p>
+    </div>
+    <div class="model-item">
+      <h3>熵序列预测 (EntropyGRU)</h3>
+      <p>基于门控循环单元（GRU）结合熵分析，高效处理 3 位数序列的动态变化，计算速度快。</p>
+      <p><strong>示例</strong>：对 [123, 456, 789] 进行熵优化，预测下一组为 [678]。</p>
+    </div>
+    <div class="model-item">
+      <h3>熵特征学习 (EntropyXGB)</h3>
+      <p>结合熵分析的 XGBoost 模型，强化特征选择，精准挖掘 3 位数序列的统计特性。</p>
+      <p><strong>示例</strong>：从 [123, 456, 789] 提取熵特征，预测高概率序列 [345]。</p>
+    </div>
+    <div class="model-item">
+      <h3>纯XGBoost (XGBoost)</h3>
+      <p>高性能梯度提升树算法，快速准确，适合分析 3 位数序列的复杂模式和特征重要性。</p>
+      <p><strong>示例</strong>：分析 [123, 456, 789]，识别关键特征（如数字和），预测 [456]。</p>
+    </div>
+    <div class="model-item">
+      <h3>纯GRU (GRU)</h3>
+      <p>轻量级循环神经网络，高效处理时序数据，适合快速分析 3 位数序列的短期趋势。</p>
+      <p><strong>示例</strong>：基于 [123, 456, 789]，预测短期序列 [234]。</p>
+    </div>
+    <div class="model-item">
+      <h3>纯Transformer (Transformer)</h3>
+      <p>前沿注意力机制模型，捕捉 3 位数序列的全局依赖关系，适合高精度预测。</p>
+      <p><strong>示例</strong>：分析 [123, 456, 789] 的全局模式，预测 [901]。</p>
+    </div>
+  </div>
+  <p><strong>解锁尖端数据洞察：</strong> <a href="https://github.com/cn01574978/lottery-tool/releases/download/v1.0.0/main_gui.exe" class="download-btn">免费下载 Windows 版</a></p>
+  <!-- 悬浮广告窗口 -->
+  <div class="floating-ad" id="floating-ad">
+    <button class="close-btn" onclick="document.getElementById('floating-ad').style.display='none'">X</button>
+    <script src="https://adview.cn/adview.js"></script>
+    <script>
+        window.AdView = window.AdView || [];
+        window.AdView.push({
+            ad_type: "banner",
+            ad_id: "您的悬浮广告位ID",
+            width: 200,
+            height: 150
+        });
+    </script>
+    <div id="adview_您的悬浮广告位ID"></div>
+  </div>
   <p class="contact"><strong>联系我们：</strong> your-email@example.com</p>
-  <!-- 广告位 -->
+  <!-- 固定广告位 -->
   <div class="ad-container" id="adview_ad">
     <script src="https://adview.cn/adview.js"></script>
     <script>
@@ -90,6 +283,6 @@
     </script>
     <div id="adview_您的广告位ID"></div>
   </div>
-  <p class="footer-note">注：本工具包含 AdView 广告，用于支持开发和维护，仅限娱乐和学术用途。</p>
+  <p class="footer-note">注：本工具包含 AdView 广告，用于支持持续开发与维护，仅限娱乐和学术研究用途。</p>
 </body>
 </html>
